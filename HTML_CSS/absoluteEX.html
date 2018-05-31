@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>absolute</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-size: 1em;
+    }
+    body {
+      background: #fff;
+      margin: 10px;
+      font-size: .75em;
+    }
+    .header {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 2px solid #ccc;
+    }
+    .container {
+      border: 2px solid #ccc;
+      background-color: yellow;
+    }
+
+    .container::after{
+      content:"";
+      display: block;
+      clear: both;
+    }
+
+    .absolute1 {
+      /* position: absolute; */
+      width: 500px;
+      padding: 10px;
+      border: 1px solid #181818;
+      background: yellowgreen;
+      float: left;
+    }
+    .absolute2 {
+      /* position: absolute; */
+      width: 400px;
+      padding: 10px;
+      border: 1px solid #181818;
+      background: blue;
+      float: right;
+    }
+    .footer {
+      margin-top: 10px;
+      padding: 10px;
+      border: 2px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <p>header</p>
+  </div>
+  <div class="container">
+    <div class="absolute1">
+      <p>
+        <strong>absolute1</strong>
+      </p>
+    </div>
+    <div class="absolute2">
+      <p>
+        <strong>absolute2</strong>
+      </p>
+    </div>
+  </div>
+  <div class="footer">
+    <p>footer</p>
+  </div>
+</body>
+</html>
