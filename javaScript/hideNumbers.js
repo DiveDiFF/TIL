@@ -12,8 +12,8 @@ console.log(hideNumbers('027778888'));
 
 function hideNumbers(str){
   var hidden = '*'.repeat(str.length - 4);
-  str = hidden + str.substring(str.length-4); 
-  return str;
+  str = str.substring(str.length - 4); 
+  return hidden + str;
 }
 
 console.log(hideNumbers('01033334444'));
