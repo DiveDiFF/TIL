@@ -38,14 +38,15 @@ testArray.forEach(function (item, index, array) {
   total += item; 
 });
 ```
-
+> for문으로 바꾸면
 ```javascript
 var total = 0;
 for(var i = 0; i < arr.length; i++) {
   total += array[i];
 }
 ```
-
+> 고차함수로 바꾸면
 ```javascript
 arr.forEach((item,i) => total += item);
 ```
+
