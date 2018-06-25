@@ -55,3 +55,57 @@
 
 > 버블링은 왜 필요한가?
 >  - 부모요소에 이벤트를 줘서 자식요소 전체에서 발생하는 이벤트를 핸들링 할 수 있어 짐 
+---
+* 서버사이드렌더링(SCR)
+  - 서버가 html 파일을 바꿔 페이지를 전환하는 방식
+  - 화면이 깜빡임...
+<-> 클라이언트사이드렌더링(CCR) 
+
+```HTML
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    html, body { height: 100%; }
+  </style>
+<body>
+  <p>버블링 이벤트 <button>버튼</button></p>
+  <script>
+    var body = document.querySelector('body');
+    var para = document.querySelector('p');
+    var button = document.querySelector('button');
+
+    // 버블링
+    body.addEventListener('click', function () {
+      console.log('Handler for body.');
+    });
+
+    // 캡쳐링
+    para.addEventListener('click', function () {
+      console.log('Handler for paragraph.');
+    }, true);
+
+    // 버블링
+    button.addEventListener('click', function () {
+      console.log('Handler for button.');
+    });
+  </script>
+</body>
+</html>
+```
+---
+## EVENT 객체
+
+- 이벤트가 발생하면 브라우저는 이벤트 객체를 생성해서 이벤트핸들러의 첫번째 인자로 전달한다. 
+
+## EVENT TARGET
+
+- 이벤트를 발생시킨 요소
+  - e.target 으로 정보를 전달
+
+- 이벤트 핸들러 함수 내부에선 this가 current target 을 가르킨다.
+
+---
+## EVENT DELEGATION
+
+- 이벤트 핸들러를 target 요소 모두에 바인딩 하지 않고, 부모 요소에 바인딩함(버블링 활용)
