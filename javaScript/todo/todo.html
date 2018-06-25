@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" placeholder="enter todo">
+    <button class="add-btn">Add</button>
+    
+    <ul></ul>
+    <script>
+      var todos = [];
+      
+      var addBtn = document.querySelector('.add-btn');
+      var todoInput = document.querySelector('input');
+      var list = document.querySelector('ul');
+      
+      function generateHTML() {
+        todos.forEach(function (todo) {
+            var checked = todo.completed ? 'checked' : '';
+            list.innerHTML += '<li id ="' + todo.id + '"><input type="checkbox"' + checked + '><span>' + todo.content +'</span> <button>del</button></li>';
+          });
+      };
+      
+      window.addEventListener('load', function () {
+        // 서버로부터 데이터를 취득
+        todos = [
+          { id: 1, content: 'HTML', completed: true },
+          { id: 2, content: 'CSS', completed: false },
+          { id: 300, content: 'JS', completed: true },
+          { id: 4, content: 'Angular', completed: false }
+        ];
+      
+        // todos 배열을 사용하여 html을 생성하여 반영한다.
+        generateHTML();
+      });
+      
+      
+      
+      // function addTodo(todo) {
+      //   if (!todo) return;
+      //   list.innerHTML += '<li><span>' + todo + '</span> <button>del</button></li>';
+      // }
+      
+      
+      function getNextId() {
+       return todos.length ? Math.max.apply(null, todos.map(function (todo) {return todo.id})) + 1 : 1;
+      };
+
+
+    addBtn.addEventListener('click', function () {
+      todos = [{ id: getNextId(), content: todoInput.value, completed: false }].concat(todos);
+      list.innerHTML = '';
+      generateHTML();
+      todoInput.value = '';
+    });
+    
+    todoInput.addEventListener('keyup', function (e) {
+      if (e.keyCode !== 13) return;
+      todos = [{ id: getNextId(), content: todoInput.value, completed: false }].concat(todos);
+      list.innerHTML = '';
+      generateHTML();
+      this.value = '';
+    });
+
+
+    list.addEventListener('click', function (e) {
+      var id = +e.target.parentNode.id;
+      
+      if (e.target.nodeName === 'BUTTON') {
+        todos = todos.filter(function (todo) {
+          return todo.id !== id;
+        })
+      }
+      else if (e.target.nodeName === 'INPUT') {
+        todos = todos.map(function (todo) {
+          return todo.id === id ? Object.assign( {}, todo, {completed: !todo.completed}) : todo;
+        })
+      }
+      else {return};
+      list.innerHTML = '';
+      generateHTML();
+    });
+
+  </script>
+</body>
+</html>

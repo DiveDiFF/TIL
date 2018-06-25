@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>What is To Do!!!</title>
+</head>
+<body>
+  <h1>Hello Eunji~~ What is To do???</h1>
+  <input type="text">
+  <button class = "AddBtn">Add</button>
+  <ul></ul>
+  <script>
+    var todos = [];
+    var todoInput = document.querySelector('input')
+    var addBtn = document.querySelector('.AddBtn');
+    var list = document.querySelector('ul');
+    
+    function generateHTML() {
+      todos.forEach(function(todo) {
+        var checked = todo.completed ? 'checked' : '';
+        list.innerHTML += '<li id = "' + todo.id + '"><input type="checkbox"' + checked + '><span>' + todo.content + '</span> <button>Del</button>';
+      })
+    };
+
+    window.addEventListener('load', function(todo) {
+      todos = [
+        { id: 1, content: 'HTML', completed: true },
+        { id: 2, content: 'CSS', completed: false },
+        { id: 3, content: 'JS', completed: true },
+        { id: 4, content: 'Angular', completed: false }
+      ]
+      
+      generateHTML();
+    });
+    
+    function getId(){
+      return todos.length ? Math.max.apply(null, todos.map(function(todo) {return todo.id})) + 1 : 1
+    }
+    
+    addBtn.addEventListener('click', function() {
+      if (!todoInput.value.length) return;
+      todos = [{ id: getId(), content: todoInput.value, completed: false}].concat(todos);
+      list.innerHTML = '';
+      generateHTML();
+      todoInput.innerHTML = '';
+    });
+    
+    todoInput.addEventListener('keyup', function(e) {
+      if (!todoInput.value.length || e.keyCode !== 13) return;
+      todos = [{ id: getId(), content: todoInput.value, completed: false}].concat(todos);
+      list.innerHTML = '';
+      generateHTML();
+      todoInput.innerHTML = '';
+    });
+
+    list.addEventListener('click', function(e) {
+      var id = +e.target.parentNode.id;
+      
+      if (e.target.nodeName === 'BUTTON') {
+        todos = todos.filter(function (todo) {
+          return todo.id !== id;
+        });
+      }
+      else if (e.target.nodeName === 'INPUT') {
+        todos = todos.map(function (todo) {
+          return todo.id !== id ? Object.assign({}, todo, {completed: !todo.completed}) : todo;
+        });
+      }
+      else {return};
+      list.innerHTML = '';
+      generateHTML();
+
+    })
+    
+
+  </script>
+  
+</body>
+</html>
