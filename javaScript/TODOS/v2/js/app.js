@@ -9,6 +9,7 @@ var tabItems = document.querySelectorAll('.nav li');
 var chkAll = document.querySelector('#chk-allComplete');
 var numChk = document.querySelector('#completedTodos');
 var numActive = document.querySelector('#activeTodos');
+var removeCompletedBtn = document.querySelector('#btn-removeCompletedTodos');
 
 function renderHTML(status) {
   list.innerHTML = '';
@@ -109,3 +110,10 @@ chkAll.addEventListener('change', function (e) {
   });
   renderHTML(statusTodo);
 });
+
+removeCompletedBtn.addEventListener('click', function (e) {
+  todos = todos.filter(function (todo) {
+    return !todo.completed
+  });
+  renderHTML(statusTodo);
+})
