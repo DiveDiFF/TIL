@@ -10,6 +10,7 @@ module.exports = {
     "plugins": [ "import", "html" ],
     "rules": {
         // 0 "off", 1 "warn" 2 "error"
+        "no-param-reassign": 0,
         "prefer-arrow-callback": 0,
         "func-names": 0,
         "no-console": "warn",

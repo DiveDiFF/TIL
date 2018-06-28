@@ -1,12 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Todos V2</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
-  <script defer src="js/app2.js"></script>
+  <script>
+    let todos = [];
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'http://localhost:5000/todos');
+    xhr.send();
+
+    xhr.onreadystatechange = function (e) {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          console.log(xhr.responseText);
+
+          todos = JSON.parse(xhr.responseText);
+        } else {
+          console.log('Error!');
+        }
+      }
+    };
+    console.log(todos);
+  </script>
 </head>
+
 <body>
   <div class="container">
     <div class="row">
@@ -39,15 +59,19 @@
         </ul>
         <div class="col-xs-6">
           <label class="i-checks" style="padding-left: 20px">
-            <input id="chk-allComplete" type="checkbox"><i></i><span>Mark all as complete</span>
+            <input id="chk-allComplete" type="checkbox">
+            <i></i>
+            <span>Mark all as complete</span>
           </label>
         </div>
         <div class="col-xs-6 text-right">
-          <button id="btn-removeCompletedTodos" class="btn btn-default btn-xs">Clear completed (<span id="completedTodos">0</span>)</button>
+          <button id="btn-removeCompletedTodos" class="btn btn-default btn-xs">Clear completed (
+            <span id="completedTodos">0</span>)</button>
           <strong id="activeTodos"></strong> items left
         </div>
       </div>
     </div>
   </div>
 </body>
+
 </html>
