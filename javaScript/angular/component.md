@@ -89,3 +89,37 @@ DOM  <-- 상태, 업데이트 -->  View(Template)  <-- 데이터 바인딩 -->  
     - **ngFor="let item of items; let i=index; let odd=odd; trackBy: trackById"*
 3. ngSwitch
     - 잘 안씀
+
+---
+
+## component간의 상태 공유
+
+컴포넌트 템플릿에 \<component-name>\</component-name>를 넣어서 관계 설정
+
+
+부모 컴포넌트에 있는 프로퍼티를 자식 컴포넌트가 쓰려면 프로퍼티 바인딩
+- 부:프로퍼티바인딩, 자:@Input
+자식 컴포넌트에서 부모 컴포넌트에 실행을 요청하려면 이벤트 바인딩
+- 부:이벤트바인딩, @Output, EventEmitter
+
+### stateful 컴포넌트와 Stateless 컴포넌트
+
+stateful 컴포넌트 : 스마트 컴포넌트
+
+---
+
+## PIPE
+
+원하는 형식으로 화면에 표시하기 위한 빌트인 파이프와 커스텀 파이프 제작 가능
+
+
+```angular
+{{ value | PipeName }}
+<!-- parameter -->
+{{ value | PipeName : Option : OptionValue }}
+<!-- chainning -->
+{{ value | PipeName1 | PipeName2 }}
+```
+
+- Built-in Pipe
+- Custom Pipe
