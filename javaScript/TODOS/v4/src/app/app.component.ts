@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Todo } from './models/todo.interface';
 import { NavItem } from './models/nav-item.type';
 
@@ -10,8 +11,12 @@ import { NavItem } from './models/nav-item.type';
 export class AppComponent implements OnInit {
   todos: Todo[];
   content = '';
-  navItems: NavItem = ['All', 'Active', 'Completed'];
+  navItems: NavItem[] = ['All', 'Active', 'Completed'];
   currentNavItem: NavItem = 'All';
+
+  constructor(private http: HttpClient) {
+    console.log(http);
+  }
 
   ngOnInit() {
     this.todos = [
@@ -32,7 +37,7 @@ export class AppComponent implements OnInit {
     this.content = '';
     console.log('[addTodo] :', newTodo);
   }
-  changeNav(navItem: string) {
+  changeNav(navItem: NavItem) {
     this.currentNavItem = navItem;
     console.log('[changeNav] :', navItem);
   }
