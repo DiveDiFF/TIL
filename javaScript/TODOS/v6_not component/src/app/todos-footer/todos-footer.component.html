@@ -1,0 +1,11 @@
+<div class="col-xs-6">
+  <label class="i-checks" style="padding-left: 20px">
+    <input type="checkbox"
+        (change)="toggleTodos.emit($event.target.checked)"><i></i><span>Mark all as complete</span>
+  </label>
+</div>
+<div class="col-xs-6 text-right" *ngIf="todos">
+  <button class="btn btn-default btn-xs"
+      (click)="removeCompletedTodo.emit()">Clear completed (<span>{{ getCntCompletedTodos() }}</span>)</button>
+  <strong> {{ getCntActiveTodos() }} </strong> items left
+</div>
