@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1 class="title">Todos</h1>
+      <app-todos-input
+          [todos]="todos"
+          (addTodo)="addTodo($event)"></app-todos-input>
+      <app-todos-nav
+          [navItems]="navItems"
+          [currentNavItem]="currentNavItem"
+          (changeNav)="changeNav($event)"></app-todos-nav>
+      <app-todos-list
+          [todos]="todos"
+          [currentNavItem]="currentNavItem"
+          (removeTodo)="removeTodo($event)"
+          (toggleTodoCompleted)="toggleTodoCompleted($event)"></app-todos-list>
+      <app-todos-footer
+          [todos]="todos"
+          (toggleTodos)="toggleTodos($event)"
+          (removeCompletedTodo)="removeCompletedTodo($event)"
+          ></app-todos-footer>
+    </div>
+  </div>
+  <pre>{{ todos | json }}</pre>
+</div>
