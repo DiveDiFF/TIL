@@ -27,3 +27,6 @@ Rest API
 - Method : 행위 (get, post etc...)
 - Resourse: URL ('/todos')
 
+---
+
+## cold observable
