@@ -1,0 +1,7 @@
+.alert {
+  color: red;
+}
+
+input.ng-touched.ng-invalid {
+  background-color: #ff6666;
+}
