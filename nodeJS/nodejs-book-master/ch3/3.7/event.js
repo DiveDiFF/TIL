@@ -1,4 +1,4 @@
-const EventEmitter = require('events');
+import EventEmitter from 'events';
 
 const myEvent = new EventEmitter();
 myEvent.addListener('event1', () => {

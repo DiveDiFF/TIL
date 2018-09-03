@@ -1,6 +1,6 @@
-const fs = require('fs');
+import { createReadStream } from 'fs';
 
-const readStream = fs.createReadStream('./readme3.txt', { highWaterMark: 16 });
+const readStream = createReadStream('./readme3.txt', { highWaterMark: 16 });
 const data = [];
 
 readStream.on('data', (chunk) => {

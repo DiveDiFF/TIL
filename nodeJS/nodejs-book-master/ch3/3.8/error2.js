@@ -1,7 +1,7 @@
-const fs = require('fs');
+import { unlink } from 'fs';
 
 setInterval(() => {
-  fs.unlink('./abcdefg.js', (err) => {
+  unlink('./abcdefg.js', (err) => {
     if (err) {
       console.error(err);
     }
