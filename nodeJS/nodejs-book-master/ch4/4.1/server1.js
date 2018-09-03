@@ -1,6 +1,6 @@
-const http = require('http');
+import { createServer } from 'http';
 
-http.createServer((req, res) => {
+createServer((req, res) => {
   res.write('<h1>Hello Node!</h1>');
   res.end('<p>Hello Server!</p>');
 }).listen(8080, () => {
