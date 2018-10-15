@@ -1,5 +1,5 @@
 var express = require('express');
-var { User, Comment } = require('../models');
+var { User, Comment } = require('../models').default;
 
 var router = express.Router();
 
